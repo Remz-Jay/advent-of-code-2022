@@ -1,5 +1,5 @@
+from src.definitions import INPUT_DIR
 import logging
-import sys
 
 
 class Day3:
@@ -8,7 +8,7 @@ class Day3:
     rdict = dict([(x[1], x[0]) for x in enumerate(alfa)])
 
     def __init__(self):
-        self.file = open("input/day3.txt", "r")
+        self.file = open(f"{INPUT_DIR}/day3.txt", "r")
 
     def __del__(self):
         self.file.close()
@@ -51,7 +51,6 @@ class Day3:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(stream=sys.stdout, level=logging.ERROR, format='%(levelname)-8s %(message)s')
     d = Day3()
     print(f"ans1: {d.solve1()}")
     print(f"ans2: {d.solve2()}")

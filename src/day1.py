@@ -1,5 +1,5 @@
+from src.definitions import INPUT_DIR
 import logging
-import sys
 
 
 class Day1:
@@ -7,7 +7,7 @@ class Day1:
     file = None
 
     def __init__(self):
-        self.file = open("input/day1.txt", "r")
+        self.file = open(f"{INPUT_DIR}/day1.txt", "r")
 
     def __del__(self):
         self.file.close()
@@ -31,7 +31,6 @@ class Day1:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(stream=sys.stdout, level=logging.ERROR, format='%(levelname)-8s %(message)s')
     d = Day1()
     print(f"ans1: {d.solve1()}")
     print(f"ans2: {d.solve2()}")

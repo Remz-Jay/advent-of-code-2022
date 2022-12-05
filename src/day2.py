@@ -1,5 +1,5 @@
+from src.definitions import INPUT_DIR
 import logging
-import sys
 from enum import IntEnum
 
 
@@ -33,7 +33,7 @@ class Day2:
     }
 
     def __init__(self):
-        self.file = open("input/day2.txt", "r")
+        self.file = open(f"{INPUT_DIR}/day2.txt", "r")
 
     def __del__(self):
         self.file.close()
@@ -78,7 +78,6 @@ class Day2:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(stream=sys.stdout, level=logging.ERROR, format='%(levelname)-8s %(message)s')
     d = Day2()
     print(f"ans1: {d.solve1()}")
     print(f"ans2: {d.solve2()}")

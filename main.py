@@ -14,10 +14,10 @@ env = Environment(
 @click.option('--delete', default=False)
 def cli(delete, day):
     files = [
-        (f"input/day{day}.txt", False),
-        (f"tests/input/day{day}.txt", False),
-        (f"day{day}.py", "templates/day_class.pyi"),
-        (f"tests/test_day{day}.py", "templates/day_test.pyi")
+        (f"src/input/day{day}.txt", False),
+        (f"test/input/day{day}.txt", False),
+        (f"src/day{day}.py", "templates/day_class.pyi"),
+        (f"test/test_day{day}.py", "templates/day_test.pyi")
     ]
 
     if delete:

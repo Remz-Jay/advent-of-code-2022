@@ -1,5 +1,5 @@
 import unittest
-from {{id}} import {{id|capitalize}}
+from src.{{id}} import {{id|capitalize}}
 
 
 class Test{{id|capitalize}}(unittest.TestCase):

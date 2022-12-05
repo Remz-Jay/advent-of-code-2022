@@ -1,18 +1,18 @@
 import unittest
-from day2 import Day2
+from src.day4 import Day4
 
 
-class TestDay2(unittest.TestCase):
+class TestDay4(unittest.TestCase):
     obj = None
 
     @classmethod
     def setUpClass(cls):
-        cls.obj = Day2()
+        cls.obj = Day4()
 
     def test_solve1(self):
         ans = self.obj.solve1()
-        self.assertEqual(15, ans)
+        self.assertEqual(2, ans)
 
     def test_solve2(self):
         ans = self.obj.solve2()
-        self.assertEqual(12, ans)
+        self.assertEqual(4, ans)

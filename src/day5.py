@@ -1,7 +1,7 @@
-import copy
+from src.definitions import INPUT_DIR
 import logging
+import copy
 import re
-import sys
 
 
 def send_message(local_stacks):
@@ -18,7 +18,7 @@ class Day5:
     operations = []
 
     def __init__(self):
-        self.file = open("input/day5.txt", "r")
+        self.file = open(f"{INPUT_DIR}/day5.txt", "r")
         for line in self.file:
             if "[" in line:
                 iterator = re.finditer(r'[A-Z]', line)
@@ -59,7 +59,6 @@ class Day5:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(stream=sys.stdout, level=logging.ERROR, format='%(levelname)-8s %(message)s')
     d = Day5()
     print(f"ans1: {d.solve1()}")
     print(f"ans2: {d.solve2()}")

@@ -1,12 +1,12 @@
+from src.definitions import INPUT_DIR
 import logging
-import sys
 
 
 class {{id|capitalize}}:
     file = None
 
     def __init__(self):
-        self.file = open("input/{{id}}.txt", "r")
+        self.file = open(f"{INPUT_DIR}/{{id}}.txt", "r")
 
     def __del__(self):
         self.file.close()
@@ -22,7 +22,6 @@ class {{id|capitalize}}:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(levelname)-8s %(message)s')
     d = {{id|capitalize}}()
     print(f"ans1: {d.solve1()}")
     print(f"ans2: {d.solve2()}")

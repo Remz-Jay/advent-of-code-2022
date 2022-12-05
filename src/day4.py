@@ -1,5 +1,4 @@
-import logging
-import sys
+from src.definitions import INPUT_DIR
 
 
 def prep_line(line):
@@ -16,7 +15,7 @@ class Day4:
     file = None
 
     def __init__(self):
-        self.file = open("input/day4.txt", "r")
+        self.file = open(f"{INPUT_DIR}/day4.txt", "r")
 
     def __del__(self):
         self.file.close()
@@ -41,7 +40,6 @@ class Day4:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(levelname)-8s %(message)s')
     d = Day4()
     print(f"ans1: {d.solve1()}")
     print(f"ans2: {d.solve2()}")
