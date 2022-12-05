@@ -1,5 +1,7 @@
 # Advent of Code 2022
 
+[![Advent of Code 2022](https://github.com/Remz-Jay/advent-of-code-2022/actions/workflows/aoc22.yaml/badge.svg)](https://github.com/Remz-Jay/advent-of-code-2022/actions/workflows/aoc22.yaml)
+
 *Beware, messy code ahead.*
 
 ## Disclaimer
