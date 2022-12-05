@@ -39,12 +39,18 @@ python -m src.dayX
 ### Testing all days
 ```shell
  python -m unittest discover
+ - or -
+ python -m pytest
 ```
 ### Testing day X
 ```shell
 python -m unittest test.test_dayX
+- or -
+python -m pytest test/test_dayX.py
 ```
 ### Running a single test
 ```shell
 python -m unittest test.test_dayX.TestDayX.test_solve1
+- or -
+python -m pytest test/test_dayX.py::TestDayX::test_solve1
 ```
