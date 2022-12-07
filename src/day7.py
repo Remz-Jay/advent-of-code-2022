@@ -6,8 +6,8 @@ from anytree import Node, RenderTree, findall
 class Day7:
     file = None
     ans1 = 0
+    ans2 = []
     free_space = 70000000
-    dir_dict = []
 
     def __init__(self):
         self.file = open(f"{INPUT_DIR}/day7.txt", "r")
@@ -20,8 +20,7 @@ class Day7:
                         dirstack.pop()
                     else:
                         if bits[2] == '/':
-                            dirstack.append(Node('root', parent=dirstack[-1], type='Dir', size=0))
-                            dirstack.pop(0)
+                            dirstack[0] = Node('root', parent=dirstack[-1], type='Dir', size=0)
                         else:
                             dirstack.append(Node(bits[2], parent=dirstack[-1], type='Dir', size=0))
             elif not line.startswith('dir'):
@@ -31,7 +30,6 @@ class Day7:
         for pre, fill, node in RenderTree(dirstack[0]):
             logging.info("%s%s %s %s" % (pre, node.name, node.type, node.size))
         self.free_space -= self.get_dir_size(dirstack[0])
-        logging.info(self.free_space)
         self.traverse_tree(dirstack[0])
 
     def __del__(self):
@@ -40,13 +38,9 @@ class Day7:
     def traverse_tree(self, node):
         size = self.get_dir_size(node)
         if self.free_space + size > 30000000:
-            logging.info(f"BIG ENOUGH: {node}, {size}")
-            self.dir_dict.append((size, node))
+            self.ans2.append((size, node))
         if size < 100000:
-            logging.info(f"adding {size} to total")
             self.ans1 += size
-        if size > 30000000:
-            logging.info(f"BIG ENOUGH: {node}")
         for n in node.children:
             if n.type == "Dir":
                 self.traverse_tree(n)
@@ -66,8 +60,8 @@ class Day7:
 
     def solve2(self):
         logging.info("Executing Solve2")
-        self.dir_dict.sort(key=lambda a: a[0])
-        return self.dir_dict[0][0]
+        self.ans2.sort(key=lambda a: a[0])
+        return self.ans2[0][0]
 
 
 if __name__ == '__main__':
