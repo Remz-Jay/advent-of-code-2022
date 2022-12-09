@@ -6,9 +6,9 @@ class Day9:
     file = None
     pos_head: tuple[int, int] = (0, 0)
     pos_tail: tuple[int, int] = (0, 0)
-    multi_tail = [(0, 0)] * 9
-    tail_set = {(0, 0)}
-    multi_tail_set = {(0, 0)}
+    multi_tail: list[tuple[int, int]] = [(0, 0)] * 9
+    tail_set: set[tuple[int, int]] = {(0, 0)}
+    multi_tail_set: set[tuple[int, int]] = {(0, 0)}
 
     def __init__(self):
         self.file = open(f"{INPUT_DIR}/day9.txt", "r")
@@ -16,8 +16,8 @@ class Day9:
     def __del__(self):
         self.file.close()
 
-    def do_the_moves(self, diff):
-        self.pos_head = tuple(map(sum, zip(self.pos_head, diff)))
+    def do_the_moves(self, diff: tuple[int, int]):
+        self.pos_head = tuple[int, int](map(sum, zip(self.pos_head, diff)))
         self.pos_tail = self.follow(self.pos_head, self.pos_tail)
         self.multi_tail_follow()
         self.tail_set.add(self.pos_tail)
@@ -46,7 +46,7 @@ class Day9:
 
     @staticmethod
     def follow(head, tail):
-        diff = tuple(map(lambda i, j: i - j, head, tail))
+        diff = tuple[int, int](map(lambda i, j: i - j, head, tail))
         x = diff[0]
         y = diff[1]
         mov_x, mov_y = 0, 0
@@ -59,7 +59,7 @@ class Day9:
                 mov_y = 1
             if y < 0:
                 mov_y = -1
-        return tuple(map(sum, zip(tail, (mov_x, mov_y))))
+        return tuple[int, int](map(sum, zip(tail, (mov_x, mov_y))))
 
     def multi_tail_follow(self):
         for idx, item in enumerate(self.multi_tail):
