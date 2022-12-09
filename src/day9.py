@@ -1,29 +1,28 @@
 from src.definitions import INPUT_DIR
 import logging
 
+HEAD: int = 0
+
 
 class Day9:
-    file = None
-    pos_head: tuple[int, int] = (0, 0)
-    pos_tail: tuple[int, int] = (0, 0)
-    multi_tail: list[tuple[int, int]] = [(0, 0)] * 9
-    tail_set: set[tuple[int, int]] = {(0, 0)}
-    multi_tail_set: set[tuple[int, int]] = {(0, 0)}
 
     def __init__(self):
         self.file = open(f"{INPUT_DIR}/day9.txt", "r")
+        rope_length: int = 10
+        self.rope: list[tuple[int, int]] = [(0, 0)] * rope_length
+        self.knot_positions_unique: list[set[tuple[int, int]]] = [{(0, 0)}] * rope_length
 
     def __del__(self):
         self.file.close()
 
-    def do_the_moves(self, diff: tuple[int, int]):
-        self.pos_head = tuple[int, int](map(sum, zip(self.pos_head, diff)))
-        self.pos_tail = self.follow(self.pos_head, self.pos_tail)
-        self.multi_tail_follow()
-        self.tail_set.add(self.pos_tail)
-        self.multi_tail_set.add(self.multi_tail[-1])
-        logging.info(f"head pos: {self.pos_head}")
-        logging.info(f"tail pos: {self.pos_tail}")
+    def do_the_moves(self, diff: tuple[int, int], count: int):
+        for _ in range(count):
+            self.rope[HEAD] = tuple[int, int](map(sum, zip(self.rope[HEAD], diff)))
+            self.multi_tail_follow()
+            for idx in range(0, len(self.rope)):
+                foo = set[tuple[int, int]](self.knot_positions_unique[idx])
+                foo.add(self.rope[idx])
+                self.knot_positions_unique[idx] = foo
 
     def walk(self):
         for line in self.file:
@@ -32,17 +31,13 @@ class Day9:
             direction = instruction[0]
             count = int(instruction[1])
             if direction == "U":
-                for _ in range(count):
-                    self.do_the_moves((0, -1))
+                self.do_the_moves((0, -1), count)
             elif direction == "D":
-                for _ in range(count):
-                    self.do_the_moves((0, 1))
+                self.do_the_moves((0, 1), count)
             elif direction == "L":
-                for _ in range(count):
-                    self.do_the_moves((-1, 0))
+                self.do_the_moves((-1, 0), count)
             elif direction == "R":
-                for _ in range(count):
-                    self.do_the_moves((1, 0))
+                self.do_the_moves((1, 0), count)
 
     @staticmethod
     def follow(head, tail):
@@ -62,20 +57,17 @@ class Day9:
         return tuple[int, int](map(sum, zip(tail, (mov_x, mov_y))))
 
     def multi_tail_follow(self):
-        for idx, item in enumerate(self.multi_tail):
-            if idx == 0:
-                self.multi_tail[idx] = self.follow(self.pos_head, self.multi_tail[idx])
-            else:
-                self.multi_tail[idx] = self.follow(self.multi_tail[idx - 1], self.multi_tail[idx])
+        for idx in range(1, len(self.rope)):
+            self.rope[idx] = self.follow(self.rope[idx - 1], self.rope[idx])
 
     def solve1(self):
         logging.info("Executing Solve1")
         self.walk()
-        return len(self.tail_set)
+        return len(self.knot_positions_unique[1])
 
     def solve2(self):
         logging.info("Executing Solve2")
-        return len(self.multi_tail_set)
+        return len(self.knot_positions_unique[-1])
 
 
 if __name__ == '__main__':
