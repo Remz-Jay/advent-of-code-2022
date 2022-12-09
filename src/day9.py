@@ -1,6 +1,3 @@
-import operator
-from typing import Tuple, Any
-
 from src.definitions import INPUT_DIR
 import logging
 
