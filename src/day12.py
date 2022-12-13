@@ -68,28 +68,16 @@ class Day12:
                 # print(x, iter_x, iter_y)
                 if iter_x > 0:
                     distance = self.map[iter_y][iter_x - 1] - x
-                    if distance < 2:
-                        if distance <= 0:
-                            distance += 1
-                        g.add_edge((iter_x, iter_y), (iter_x - 1, iter_y), distance)
+                    g.add_edge((iter_x, iter_y), (iter_x - 1, iter_y), distance)
                 if iter_y > 0:
                     distance = self.map[iter_y - 1][iter_x] - x
-                    if distance < 2:
-                        if distance <= 0:
-                            distance += 1
-                        g.add_edge((iter_x, iter_y), (iter_x, iter_y - 1), distance)
+                    g.add_edge((iter_x, iter_y), (iter_x, iter_y - 1), distance)
                 if iter_x < len(y) - 1:
                     distance = self.map[iter_y][iter_x + 1] - x
-                    if distance < 2:
-                        if distance <= 0:
-                            distance += 1
-                        g.add_edge((iter_x, iter_y), (iter_x + 1, iter_y), distance)
+                    g.add_edge((iter_x, iter_y), (iter_x + 1, iter_y), distance)
                 if iter_y < len(self.map) - 1:
                     distance = self.map[iter_y + 1][iter_x] - x
-                    if distance < 2:
-                        if distance <= 0:
-                            distance += 1
-                        g.add_edge((iter_x, iter_y), (iter_x, iter_y + 1), distance)
+                    g.add_edge((iter_x, iter_y), (iter_x, iter_y + 1), distance)
         g.process()
         self.graph = g
         self.graph_prepped = True
@@ -97,8 +85,7 @@ class Day12:
     def find_from_start(self):
         if not self.graph_prepped:
             self.prepare_graph()
-        returned_path, returned_distance = self.graph.shortest_path(self.start, self.end)
-        return len(returned_path) - 1
+        return self.graph.shortest_path(self.start, self.end)
 
     def find_for_value(self, value):
         if not self.graph_prepped:
@@ -108,10 +95,9 @@ class Day12:
             for iter_x, x in enumerate(y):
                 if x == value:
                     foo = (iter_x, iter_y)
-                    returned_path, returned_distance = self.graph.shortest_path(foo, self.end)
-                    if len(returned_path) > 1:
-                        logging.info(f"adding length {len(returned_path) - 1} for pos {foo}")
-                        paths.add(len(returned_path) - 1)
+                    returned_path = self.graph.shortest_path(foo, self.end)
+                    if returned_path > 0:
+                        paths.add(returned_path)
         return min(paths)
 
     def solve1(self):
