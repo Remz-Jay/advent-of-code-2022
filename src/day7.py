@@ -1,6 +1,6 @@
 from src.definitions import INPUT_DIR
 import logging
-from anytree import Node, RenderTree, findall
+from anytree import Node, RenderTree
 
 
 class Day7:

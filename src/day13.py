@@ -4,36 +4,37 @@ from src.definitions import INPUT_DIR
 import logging
 
 
+def compare_ints(left, right):
+    logging.info(f"\t- Compare {left} vs {right}")
+    if left < right:
+        logging.info("\t\t- Left side is smaller, so inputs are *in the right order*")
+        return 1
+    elif left > right:
+        logging.info("\t\t- Right side is smaller, so inputs are not in the right order")
+        return -1
+    return 0
+
+
 def compare(left, right):
     logging.info(f"- Compare {left} vs {right}")
     for iter, l in enumerate(left):
         if len(right) > iter:
             r = right[iter]
             if isinstance(l, int) and isinstance(r, int):
-                logging.info(f"\t- Compare {l} vs {r}")
-                if l < r:
-                    logging.info(f"\t\t- Left side is smaller, so inputs are *in the right order*")
-                    return 1
-                elif l > r:
-                    logging.info(f"\t\t- Right side is smaller, so inputs are not in the right order")
-                    return -1
+                test = compare_ints(l, r)
             elif isinstance(l, list) and isinstance(r, list):
                 test = compare(l, r)
-                if test != 0:
-                    return test
             elif isinstance(l, int) and isinstance(r, list):
                 test = compare([l], r)
-                if test != 0:
-                    return test
             else:
                 test = compare(l, [r])
-                if test != 0:
-                    return test
+            if test != 0:
+                return test
         else:
-            logging.info(f"- Right side ran out of items, so inputs are not in the right order")
+            logging.info("- Right side ran out of items, so inputs are not in the right order")
             return -1
     if len(right) > len(left):
-        logging.info(f"- Left side ran out of items, so inputs are in the right order")
+        logging.info("- Left side ran out of items, so inputs are in the right order")
         return 1
     return 0
 
@@ -72,16 +73,15 @@ class Day13:
         mylist = sorted(self.inputs, key=functools.cmp_to_key(compare), reverse=True)
         left, right = 0, 0
         for iter, i in enumerate(mylist):
-            print(i)
             if i == [[2]]:
                 left = iter + 1
             if i == [[6]]:
                 right = iter + 1
-        print(left, right)
+        logging.info(left, right)
         return left * right
 
 
 if __name__ == '__main__':
     d = Day13()
     print(f"ans1: {d.solve1()}")
-    # print(f"ans2: {d.solve2()}")
+    print(f"ans2: {d.solve2()}")

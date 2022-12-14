@@ -1,5 +1,3 @@
-from subprocess import call
-
 from src.definitions import INPUT_DIR
 import logging
 

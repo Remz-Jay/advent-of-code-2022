@@ -11,6 +11,7 @@ if 'unittest' in sys.modules.keys():
 else:
     INPUT_DIR = os.path.join(ROOT_DIR, 'input')
 
+
 # Modified from: https://github.com/dmahugh/dijkstra-algorithm/blob/master/dijkstra_algorithm.py
 class Graph:
     def __init__(self):
