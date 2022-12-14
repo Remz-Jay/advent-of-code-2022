@@ -11,8 +11,8 @@ class TestDay14(unittest.TestCase):
 
     def test_grid(self):
         self.obj.__init__()
-        self.assertEquals(494, self.obj.min_x)
-        self.assertEquals(503, self.obj.max_x)
+        self.assertEqual(494, self.obj.min_x)
+        self.assertEqual(503, self.obj.max_x)
         output = self.obj.print_grid(self.obj.min_x, self.obj.max_x, 0, self.obj.max_y, self.obj.insert, True, True)
         expected = """  4     5  5
   9     0  0
