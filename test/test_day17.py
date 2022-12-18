@@ -42,4 +42,3 @@ class TestDay17(unittest.TestCase):
         self.obj.__init__()
         ans = self.obj.solve2()
         self.assertEqual(1514285714288, ans)
-

@@ -295,15 +295,15 @@ class Day17:
         """
         So.. yeah, this was quite the process.
         The solve2 solution above isn't what I used to complete the 2nd star. No, I did that "manually".
-        It was over 24 hours later that I realized I could count the numbers of grid lines added per block to find 
+        It was over 24 hours later that I realized I could count the numbers of grid lines added per block to find
         the pattern, as implemented above.
         Had a different strategy at first: Count the times each unique horizontal "bar" combination (2^7 possibilities)
         appeared in the output, and the most common found value would be the number of times the pattern had repeated.
         Which turned out to be true, but the amount of outliers was so high during iteration, that it was impossible
         for me to reliably detect the start/end of the pattern. So, instead of improving the algo, I just did it by hand.
-        
+
         Visually compared mountains of output to eventually find a pattern like:
-        
+
         5876 [(3, 6), (20, 5), (7, 5), (4, 4), (11, 3)]
         5877 [(3, 6), (20, 5), (7, 5), (4, 4), (11, 3)]
         5878 [(3, 6), (20, 5), (7, 5), (4, 4), (11, 3)]
@@ -331,7 +331,7 @@ class Day17:
         9322 [(6, 6), (32, 5), (11, 5), (5, 4), (17, 3)]
         9323 [(6, 6), (32, 5), (11, 5), (5, 4), (17, 3)]
         9324 [(6, 6), (32, 5), (11, 5), (5, 4), (17, 3)]
-        
+
         From there, I did the rest of the calculations by hand, as apparent from the war zone below.
         I'll just leave this heap of garbage in the source, for the viewer to enjoy, and as a testament to the
         pain I endured trying to solve this puzzle :) -- enjoy!
