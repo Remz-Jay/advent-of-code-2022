@@ -73,7 +73,6 @@ class Day18:
     @functools.lru_cache(maxsize=None)
     def can_see_open_air(self, x, y, z):
         c = Cube(x, y, z)
-        if c in self.cur: return False
         if c in self.ok: return True
         if c in self.nok: return False
         if not self.min_x <= x <= self.max_x:
@@ -88,6 +87,7 @@ class Day18:
         if c in self.cubes:
             self.nok.append(c)
             return False
+        if c in self.cur: return False
         self.cur.append(c)
         if self.can_see_open_air(c.x + 1, c.y, c.z):
             self.ok.append(c)
