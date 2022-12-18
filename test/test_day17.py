@@ -40,4 +40,8 @@ class TestDay17(unittest.TestCase):
 
     def test_solve2(self):
         ans = self.obj.solve2()
-        self.assertEqual(True, ans)
+        self.assertEqual(1514285714288, ans)
+
+
+1514285714288 - 1514285714263
+1514285714285 - 1514285714288
