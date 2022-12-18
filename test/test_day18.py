@@ -15,4 +15,4 @@ class TestDay18(unittest.TestCase):
 
     def test_solve2(self):
         ans = self.obj.solve2()
-        self.assertEqual(True, ans)
+        self.assertEqual(58, ans)
