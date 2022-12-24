@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from src.definitions import INPUT_DIR
 import logging
 
+
 @dataclass
 class Blueprint:
     id: int
@@ -32,6 +33,7 @@ class Blueprint:
     def highest_ore_cost(self) -> int:
         return max(self.ore_cost, self.clay_cost, self.obsidian_ore_cost, self.geode_ore_cost)
 
+
 ORE = 0
 CLAY = 1
 OBSIDIAN = 2
@@ -47,12 +49,14 @@ robots = [
 
 class Day19:
     file = None
+
     def __init__(self):
         self.blueprints: list[Blueprint] = []
         self.max_geodes: int = 0
         self.file = open(f"{INPUT_DIR}/day19.txt", "r")
         for line in self.file:
-            blueprint, ore, clay, obsidian_ore, obsidian_clay, geode_ore, geode_obsidian = [int(x) for x in re.findall("\d+", line.strip())]
+            blueprint, ore, clay, obsidian_ore, obsidian_clay, geode_ore, geode_obsidian \
+                = [int(x) for x in re.findall(r"\d+", line.strip())]
             self.blueprints.append(Blueprint(blueprint, ore, clay, (obsidian_ore, obsidian_clay), (geode_ore, geode_obsidian)))
 
     def __del__(self):
@@ -158,7 +162,7 @@ class Day19:
             result += self.max_geodes * bp.id
         return result
 
-    def solve2(self, bp_range:int = 3) -> int:
+    def solve2(self, bp_range: int = 3) -> int:
         logging.info("Executing Solve2")
         result = []
         for bp in self.blueprints[:bp_range:]:
