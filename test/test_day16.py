@@ -13,7 +13,7 @@ class TestDay16(unittest.TestCase):
         ans = self.obj.solve1()
         self.assertEqual(1651, ans)
 
-    @unittest.skip("Haven't implemented this yet..")
+    @unittest.skip("Takes FOR-EVER (and ever)")
     def test_solve2(self):
         ans = self.obj.solve2()
         self.assertEqual(1707, ans)
